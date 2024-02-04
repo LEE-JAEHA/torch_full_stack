@@ -1,4 +1,11 @@
 /* ImageUploader.css */
+body {
+    font-family: 'Protest Riot', sans-serif;
+    background-color: wheat;
+}
+
+/* ... (이전 스타일 코드) */
+
 .container {
     display: flex;
     flex-direction: column;
@@ -6,24 +13,42 @@
     margin-top: 50px;
 }
 
+.title {
+    font-size: 36px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
+
 .file-input-wrapper {
     position: relative;
     overflow: hidden;
-    display: inline-block;
+    display: flex;
     margin-bottom: 20px;
 }
 
 .file-input-button {
+    /* border-radius: 10px;
     border: 2px solid #4caf50;
     color: #4caf50;
-    background-color: white;
-    padding: 8px 20px;
-    border-radius: 5px;
-    font-size: 14px;
+    background-color: white; */
+    border-radius: 1rem;
+    color: white;
+    background-color: #4caf50;
+    padding: 12px 24px;
+    font-size: 18px;
+    font-weight: bold;
     cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.file-input-button:hover {
+    background-color: #4caf50;
+    color: white;
 }
 
 .file-input {
+    font-weight: bold;
     font-size: 100px;
     position: absolute;
     top: 0;
@@ -36,12 +61,16 @@
 }
 
 .upload-button {
-    padding: 10px;
+    padding: 15px 30px;
     background-color: #4caf50;
     color: white;
     border: none;
+    border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    font-family: 'Protest Riot', sans-serif;
+
 }
 
 .upload-button:hover {
@@ -53,7 +82,45 @@
     text-align: center;
 }
 
-/* 추가된 스타일 */
+.prediction-info {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* ImageUploader.css */
+/* ... (이전 스타일 코드) */
+
+/* ImageUploader.css */
+/* ... (이전 스타일 코드) */
+
+.files-table {
+    width: 80%;
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+.files-table th, .files-table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: left;
+}
+
+.files-table th {
+    background-color: #4caf50;
+    color: white;
+}
+
+.files-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* ... (이전 스타일 코드) */
+
+
+/* ... (이전 스타일 코드) */
+
 .image-grid {
     display: flex;
     flex-wrap: wrap;
@@ -61,8 +128,15 @@
 }
 
 .image-grid img {
-    width: 30%; /* 3열 그리드를 원하면 각 이미지의 너비를 30%로 설정 */
-    margin: 10px; /* 이미지 간 간격 조절 */
-    border: 1px solid #ddd; /* 이미지 테두리 설정 */
-    border-radius: 4px;
+    width: 30%;
+    margin: 10px;
+    border: 3px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.image-grid img:hover {
+    transform: scale(1.1);
+    border-color: #4caf50;
 }

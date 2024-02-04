@@ -37,10 +37,30 @@ const ImageUploader = () => {
         return filesWithNumber.map((filename, index) => (
             <img key={index} src={`http://localhost:5000/static/uploads/${filename}`} alt={`Image ${index}`} />
         ));
-    };  
+    };
+
+    const renderFilesTable = () => {
+        return (
+            <table className="files-table">
+                <thead>
+                    <tr>
+                        <th>File Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {filesWithNumber.map((filename, index) => (
+                        <tr key={index}>
+                            <td>{filename}</td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+        );
+    };
 
     return (
         <div className="container">
+            <div className="title">Image Search Engine</div>
             <label className="file-input-wrapper">
                 <span className="file-input-button">Choose a file</span>
                 <input type="file" accept=".jpg, .jpeg, .png" className="file-input" onChange={handleFileChange} />
@@ -51,8 +71,8 @@ const ImageUploader = () => {
 
             {prediction !== null && (
                 <div className="result-container">
-                    <p>Prediction: {prediction}</p>
-                    <p>Files with a smaller number:</p>
+                    <p className="prediction-info">Prediction: {prediction}</p>
+                    {filesWithNumber.length > 0 && renderFilesTable()}
                     <div className="image-grid">{renderImages()}</div>
                 </div>
             )}
