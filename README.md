@@ -26,9 +26,16 @@
 <br>
 
 ### install
+#### back-end
+```
+pip install flask
 
 ```
-npm install
+
+#### Front-end
+```
+npm install axios
+
 ```
 
 ### start
