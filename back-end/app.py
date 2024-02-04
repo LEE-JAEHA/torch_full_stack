@@ -1,5 +1,5 @@
 # app.py
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 from PIL import Image
 import torch
@@ -9,7 +9,7 @@ import os
 app = Flask(__name__)
 CORS(app, resources={r"/predict": {"origins": "http://localhost:3000"}}, supports_credentials=True)
 
-UPLOAD_FOLDER = 'uploads'
+UPLOAD_FOLDER = 'static/uploads'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 class SimpleCNN(torch.nn.Module):
@@ -75,12 +75,24 @@ def predict():
         prediction = random.randint(0,10)
 
         # Find other files with the same number
-        files_with_number = [filename for filename in os.listdir(app.config['UPLOAD_FOLDER'])
-                             if filename.endswith('.png') and predict_digit(os.path.join(app.config['UPLOAD_FOLDER'], filename)) == prediction]
+         # Find other files with a smaller number
+        file_list = os.listdir(app.config['UPLOAD_FOLDER'])
+        files_with_smaller_number = []
+        for f_ in file_list:
+            name = f_.split(".")[0]
+            try:
+                flag=int(name)
+            except:
+                continue
+            if flag<prediction:
+                files_with_smaller_number.append(f_)
+        print(files_with_smaller_number)     
+        # files_with_smaller_number = [filename for filename in os.listdir(app.config['UPLOAD_FOLDER'])
+        #                              if filename.endswith('.jpg') and int(filename.split('.')[0]) < prediction]
 
         return jsonify({
             'prediction': prediction,
-            'files': files_with_number
+            'files': files_with_smaller_number
         })
 
 if __name__ == '__main__':

@@ -33,6 +33,12 @@ const ImageUploader = () => {
         }
     };
 
+    const renderImages = () => {
+        return filesWithNumber.map((filename, index) => (
+            <img key={index} src={`http://localhost:5000/static/uploads/${filename}`} alt={`Image ${index}`} />
+        ));
+    };  
+
     return (
         <div className="container">
             <label className="file-input-wrapper">
@@ -46,7 +52,8 @@ const ImageUploader = () => {
             {prediction !== null && (
                 <div className="result-container">
                     <p>Prediction: {prediction}</p>
-                    <p>Files with the same number: {filesWithNumber.join(', ')}</p>
+                    <p>Files with a smaller number:</p>
+                    <div className="image-grid">{renderImages()}</div>
                 </div>
             )}
         </div>
